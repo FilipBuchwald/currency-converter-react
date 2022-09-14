@@ -1,16 +1,17 @@
 import { useState } from "react";
 import "./style.css"
+import { currencyBase } from "./CurrencyBase";
+import { Result } from "./Result";
 
-const Form = () => {
+const Form = (result, calculateResult) => {
     const onFormSubmit = (event) => {
         event.preventDefault();
+        calculateResult(currency, amount);
     };
 
     const [amount, setAmount] = useState("");
     const [currency, setCurrency] = useState("");
     const onSelectChange = ({ target }) => setCurrency(target.value);
-
-
 
     return (
         <form
@@ -21,13 +22,17 @@ const Form = () => {
                 <legend className="form__legend">Kalkulator</legend>
                 <div>
                     <label>
-                        Kwota w zł: <input
+                        <span>
+                            Kwota w zł:
+                        </span>
+                        <input
                             value={amount}
-                            onChange={(event) => setAmount(event.target.amount)}
+                            onChange={({target}) => setAmount(target.amount)}
                             className="form__field"
                             placeholder="Wpisz kwotę"
                             required
-                            autoFocus />
+                            autoFocus
+                        />
                     </label>
                 </div>
 
@@ -38,24 +43,26 @@ const Form = () => {
                             value={currency}
                             onChange={onSelectChange}
                             className="form__selector"
-                            name="selectCurrency2">
-                            <option>PLN</option>
-                            <option>USD</option>
-                            <option>EUR</option>
-                            <option>GBP</option>
+                        >
+                            {currencyBase.map((currency => (
+                                <option
+                                    key={currency.name}
+                                    value={currency.name}
+                                >
+                                    {currency.name}
+                                </option>
+                            )))}
                         </select>
                     </label>
                 </div>
 
                 <button className="form__button ">Przelicz</button>
 
-                <div>
-                    Po przewalutowaniu otrzymasz: <strong className="js-form__result"></strong>
-                </div>
+                <Result result={result} />
 
             </fieldset>
         </form>
     );
 };
 
-export default Form
+export default Form;
