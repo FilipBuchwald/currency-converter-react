@@ -5,7 +5,7 @@ export const Result = ({ result }) => (
         {result !== undefined && (
             <>
                 <strong>
-                    {result.targetAmonut} test
+                    {result.targetAmount} test
                 </strong>
             </>
         )}
