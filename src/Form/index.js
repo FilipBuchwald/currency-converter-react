@@ -3,14 +3,14 @@ import "./style.css"
 import { currencyBase } from "./CurrencyBase";
 import { Result } from "./Result";
 
-const Form = (result, calculateResult) => {
+const Form = ({result, calculateResult}) => {
     const onFormSubmit = (event) => {
         event.preventDefault();
         calculateResult(currency, amount);
     };
 
     const [amount, setAmount] = useState("");
-    const [currency, setCurrency] = useState("");
+    const [currency, setCurrency] = useState(currencyBase[0].name);
     const onSelectChange = ({ target }) => setCurrency(target.value);
 
     return (
