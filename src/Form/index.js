@@ -3,7 +3,7 @@ import "./style.css"
 import { currencyBase } from "./CurrencyBase";
 import { Result } from "./Result";
 
-const Form = ({result, calculateResult}) => {
+const Form = ({ result, calculateResult }) => {
     const onFormSubmit = (event) => {
         event.preventDefault();
         calculateResult(currency, amount);
@@ -27,7 +27,7 @@ const Form = ({result, calculateResult}) => {
                         </span>
                         <input
                             value={amount}
-                            onChange={({target}) => setAmount(target.amount)}
+                            onChange={({ target }) => setAmount(target.value)}
                             className="form__field"
                             placeholder="Wpisz kwotę"
                             required
@@ -55,11 +55,8 @@ const Form = ({result, calculateResult}) => {
                         </select>
                     </label>
                 </div>
-
                 <button className="form__button ">Przelicz</button>
-
                 <Result result={result} />
-
             </fieldset>
         </form>
     );
