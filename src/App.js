@@ -17,7 +17,6 @@ function App() {
     });
   };
 
-
   return (
     <Container>
       <Header title="Kalkulator Walut" />
@@ -27,7 +26,6 @@ function App() {
       />
       <Footer title="Kurs z dnia 13.09.2022" />
     </Container>
-
   );
 };
 
