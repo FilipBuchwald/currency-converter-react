@@ -3,7 +3,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Container from "./Container";
 import { useState } from "react";
-import { currencyBase } from "./Form/CurrencyBase";
+import currencyBase from "./Form/currencyBase";
 
 function App() {
   const [result, setResult] = useState();
