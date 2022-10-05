@@ -2,7 +2,6 @@ import { useState } from "react";
 import "./style.css"
 import currencyBase from "./currencyBase";
 import { Result } from "./Result";
-import { DateTime } from "./Date";
 
 const Form = ({ result, calculateResult }) => {
     const onFormSubmit = (event) => {
@@ -21,7 +20,6 @@ const Form = ({ result, calculateResult }) => {
         >
             <fieldset className="form__fieldset">
                 <legend className="form__legend">Kalkulator</legend>
-                <DateTime/>
                 <div>
                     <label>
                         <span>

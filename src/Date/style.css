@@ -1,4 +1,6 @@
 .date {
     font-family: 'Inconsolata', monospace;
     font-size: 12px;
+    display: flex;
+    justify-content: flex-end;
 }
