@@ -1,10 +1,15 @@
+import styled from "styled-components";
 
-import "./style.css"
+const Main = styled.main`
+    max-width: 600px;
+    margin: auto;
+    padding: 10px;
+`;
 
 const Container = (props) => (
-    <main className="container">
+    <Main className="container">
         {props.children}
-    </main>
+    </Main>
 );
 
 export default Container

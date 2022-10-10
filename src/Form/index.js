@@ -1,7 +1,7 @@
 import { useState } from "react";
-import "./style.css"
 import currencyBase from "./currencyBase";
 import { Result } from "./Result";
+import { StyledForm, Fieldset, Legend, Input, Select, Button } from "./styled";
 
 const Form = ({ result, calculateResult }) => {
     const onFormSubmit = (event) => {
@@ -14,21 +14,19 @@ const Form = ({ result, calculateResult }) => {
     const onSelectChange = ({ target }) => setCurrency(target.value);
 
     return (
-        <form
-            className="form js-form"
+        <StyledForm
             onSubmit={onFormSubmit}
         >
-            <fieldset className="form__fieldset">
-                <legend className="form__legend">Kalkulator</legend>
+            <Fieldset>
+                <Legend>Kalkulator</Legend>
                 <div>
                     <label>
                         <span>
                             Kwota w zł:
                         </span>
-                        <input
+                        <Input
                             value={amount}
                             onChange={({ target }) => setAmount(target.value)}
-                            className="form__field"
                             placeholder="Wpisz kwotę"
                             required
                             autoFocus
@@ -39,10 +37,9 @@ const Form = ({ result, calculateResult }) => {
                 <div>
                     <label>
                         Chcę otrzymać:
-                        <select
+                        <Select
                             value={currency}
                             onChange={onSelectChange}
-                            className="form__selector"
                         >
                             {currencyBase.map((currency => (
                                 <option
@@ -52,13 +49,13 @@ const Form = ({ result, calculateResult }) => {
                                     {currency.name}
                                 </option>
                             )))}
-                        </select>
+                        </Select>
                     </label>
                 </div>
-                <button className="form__button ">Przelicz</button>
+                <Button className="form__button ">Przelicz</Button>
                 <Result result={result} />
-            </fieldset>
-        </form>
+            </Fieldset>
+        </StyledForm>
     );
 };
 

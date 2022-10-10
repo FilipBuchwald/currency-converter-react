@@ -1,11 +1,21 @@
 import { DateTime } from "../Date";
-import "./style.css"
+import styled from "styled-components";
+
+const StyledHeader = styled.header`
+    text-align: center;
+    padding: 10px;
+    margin: 20px auto;
+    border: 1px solid black;
+    background-color: #ddd;
+    padding: 10px;
+    border-radius: 20px;
+`;
 
 const Header = ({title}) => (
-    <header className="header">
+    <StyledHeader className="header">
         <DateTime/>
         <h1>{title}</h1>
-    </header>
+    </StyledHeader>
 );
 
 export default Header

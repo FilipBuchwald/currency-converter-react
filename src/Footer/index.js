@@ -1,10 +1,18 @@
+import styled from "styled-components";
 
-import "./style.css"
+const StyledFooter = styled.footer`
+    text-align: center;
+    border: 1px solid black;
+    margin: 10px;
+    background-color: #ddd;
+    padding: 10px;
+    border-radius: 20px;
+`; 
 
 const Footer = ({ title }) => (
-    <footer className="footer">
+    <StyledFooter>
         <p>{title}</p>
-    </footer>
+    </StyledFooter>
 );
 
 export default Footer
