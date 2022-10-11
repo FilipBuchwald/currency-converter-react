@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useCurrentDate } from "./useCurrentDate";
 
 const Text = styled.text `
     font-family: 'Inconsolata', monospace;
@@ -10,20 +10,10 @@ const Text = styled.text `
 
 export const DateTime = () => {
 
-    const [date, setDate] = useState(new Date());
-
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setDate(new Date())
-        }, 1000);
-
-        return () => {
-            clearInterval(timer)
-        }
-    });
+    const date = useCurrentDate();
 
     return (
-        <Text className="date">
+        <Text>
             Dzisiaj jest {date.toLocaleString("pl",
                 {
                     weekday: "long",
