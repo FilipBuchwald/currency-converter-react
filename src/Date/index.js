@@ -1,12 +1,5 @@
-import styled from "styled-components";
 import { useCurrentDate } from "./useCurrentDate";
-
-const Text = styled.text `
-    font-family: 'Inconsolata', monospace;
-    font-size: 12px;
-    display: flex;
-    justify-content: flex-end;
-`;
+import { Text } from "./styled";
 
 export const DateTime = () => {
 
