@@ -1,18 +1,39 @@
-import { useState } from "react";
-import currencyBase from "./currencyBase";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Result } from "./Result";
 import { StyledForm, Fieldset, Legend, Input, Select, Button } from "./styled";
 
-const Form = ({ result, calculateResult }) => {
+const Form = () => {
     const onFormSubmit = (event) => {
         event.preventDefault();
         calculateResult(currency, amount);
     };
 
     const [amount, setAmount] = useState("");
-    const [currency, setCurrency] = useState(currencyBase[0].name);
+    const [currency, setCurrency] = useState();
     const onSelectChange = ({ target }) => setCurrency(target.value);
+    const [rates, setRates] = useState([]);
+  
+    
+    useEffect(() => {
+        axios.get("https://api.exchangerate.host/latest?base=PLN")
+        .then(response => {
+            setRates(response.data.rates);
+        })
+    },[]);
 
+
+    const [result, setResult] = useState();
+
+    const calculateResult = (currency, amount) => {
+        const rate = rates[currency];
+
+        setResult({
+        targetAmount: amount * rate,
+        currency,
+        });
+    };
+    
     return (
         <StyledForm
             onSubmit={onFormSubmit}
@@ -41,12 +62,11 @@ const Form = ({ result, calculateResult }) => {
                             value={currency}
                             onChange={onSelectChange}
                         >
-                            {currencyBase.map((currency => (
+                            {Object.keys(rates).map((currency => (
                                 <option
-                                    key={currency.name}
-                                    value={currency.name}
+                                    value={currency}
                                 >
-                                    {currency.name}
+                                    {currency}
                                 </option>
                             )))}
                         </Select>
