@@ -1,5 +1,5 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useRatesData } from "./useRateData";
+import { useState } from "react";
 import { Result } from "./Result";
 import { StyledForm, Fieldset, Legend, Input, Select, Button } from "./styled";
 
@@ -10,23 +10,16 @@ const Form = () => {
     };
 
     const [amount, setAmount] = useState("");
-    const [currency, setCurrency] = useState();
+    const [currency, setCurrency] = useState("USD");
     const onSelectChange = ({ target }) => setCurrency(target.value);
-    const [rates, setRates] = useState([]);
-  
     
-    useEffect(() => {
-        axios.get("https://api.exchangerate.host/latest?base=PLN")
-        .then(response => {
-            setRates(response.data.rates);
-        })
-    },[]);
-
+    
+    const ratesData = useRatesData();
 
     const [result, setResult] = useState();
 
     const calculateResult = (currency, amount) => {
-        const rate = rates[currency];
+        const rate = ratesData[currency];
 
         setResult({
         targetAmount: amount * rate,
@@ -62,8 +55,9 @@ const Form = () => {
                             value={currency}
                             onChange={onSelectChange}
                         >
-                            {Object.keys(rates).map((currency => (
+                            {Object.keys(ratesData).map((currency => (
                                 <option
+                                    key={currency}
                                     value={currency}
                                 >
                                     {currency}
