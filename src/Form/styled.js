@@ -50,3 +50,11 @@ export const Button = styled.button`
     background-color: hsl(0, 0%, 80%);
     }
 `;
+
+export const Error = styled.p`
+    color: crimson;
+`;
+
+export const Loading = styled.p`
+    color: black;
+`;
