@@ -1,7 +1,8 @@
+import { StyledResult } from "./styled";
 
 
 export const Result = ({ result }) => (
-    <p>
+    <StyledResult>
         {result !== undefined && (
             <>
                 <span>
@@ -12,5 +13,5 @@ export const Result = ({ result }) => (
                 </strong>
             </>
         )}
-    </p>
+    </StyledResult>
 );

@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useRatesData } from "./useRateData";
 import { Result } from "./Result";
-import { StyledForm, Fieldset, Legend, Input, Select, Button, Loading, Error, Info } from "./styled";
+import { StyledForm, Fieldset, Input, Select, Button, Loading, Error, Info, StyledHeader, Wrapper, Text } from "./styled";
+import { DateTime } from "../Date";
+
 
 const Form = () => {
   const onFormSubmit = (event) => {
@@ -12,7 +14,6 @@ const Form = () => {
   const [amount, setAmount] = useState("");
   const [currency, setCurrency] = useState("USD");
   const onSelectChange = ({ target }) => setCurrency(target.value);
-
 
   const ratesData = useRatesData();
   console.log(ratesData);
@@ -33,7 +34,11 @@ const Form = () => {
       onSubmit={onFormSubmit}
     >
       <Fieldset>
-        <Legend>Kalkulator</Legend>
+        <DateTime />
+        <StyledHeader>
+          Kalkulator walut
+        </StyledHeader>
+
         {ratesData.state === "loading"
           ? (
             <Loading>
@@ -46,25 +51,27 @@ const Form = () => {
             </Error>
           ) : (
             <>
-
               <div>
-                <label>
-                  <span>
+                <Wrapper>
+                  <Text>
                     Kwota w zł:
-                  </span>
+                  </Text>
                   <Input
                     value={amount}
                     onChange={({ target }) => setAmount(target.value)}
                     placeholder="Wpisz kwotę"
                     required
                     autoFocus
+                    type="number"
                   />
-                </label>
+                </Wrapper>
               </div>
 
               <div>
-                <label>
-                  Chcę otrzymać:
+                <Wrapper>
+                  <Text>
+                    Chcę otrzymać:
+                  </Text>
                   <Select
                     value={currency}
                     onChange={onSelectChange}
@@ -78,7 +85,7 @@ const Form = () => {
                       </option>
                     )))}
                   </Select>
-                </label>
+                </Wrapper>
               </div>
               <Button className="form__button ">Przelicz</Button>
               <Result result={result} />
