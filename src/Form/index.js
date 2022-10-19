@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useRatesData } from "./useRateData";
 import { Result } from "./Result";
-import { StyledForm, Fieldset, Legend, Input, Select, Button, Loading, Error } from "./styled";
+import { StyledForm, Fieldset, Legend, Input, Select, Button, Loading, Error, Info } from "./styled";
 
 const Form = () => {
   const onFormSubmit = (event) => {
@@ -82,6 +82,9 @@ const Form = () => {
               </div>
               <Button className="form__button ">Przelicz</Button>
               <Result result={result} />
+              <Info>
+                Kursy walut pochodza z dnia {ratesData.date}
+              </Info>
             </>
           ))
         }

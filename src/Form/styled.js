@@ -58,3 +58,10 @@ export const Error = styled.p`
 export const Loading = styled.p`
     color: black;
 `;
+
+export const Info = styled.p`
+    color: black;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+`
