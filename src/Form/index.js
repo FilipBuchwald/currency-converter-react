@@ -16,7 +16,6 @@ const Form = () => {
   const onSelectChange = ({ target }) => setCurrency(target.value);
 
   const ratesData = useRatesData();
-  console.log(ratesData);
 
   const [result, setResult] = useState();
 
